@@ -1,4 +1,5 @@
 import ProductItem from './ProductItem'
+import { Link } from "react-router-dom";
 
 function OrderList({ cart, setCart }) {
   // 更新products
@@ -63,7 +64,7 @@ function OrderList({ cart, setCart }) {
         })}
 
         <div className="back-to-shop">
-          <span className="text-muted">Back to shop</span>
+          <Link to='/shop' className="text-muted">Back to shop</Link>
         </div>
       </div>
     </div>

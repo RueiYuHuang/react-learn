@@ -1,60 +1,32 @@
 import React, { useState, useEffect } from 'react'
 import { useCart } from '@/utils/useCart'
-const sampleData = [
-  {
-    id: 1,
-    name: '灰色T-shirt',
-    price: 100,
-    img: 'https://i.imgur.com/ba3tvGm.jpg',
-  },
-  {
-    id: 2,
-    name: '黑色T-shirt',
-    price: 200,
-    img: 'https://i.imgur.com/pHQ3xT3.jpg',
-  },
-  {
-    id: 3,
-    name: '咖啡色T-shirt',
-    price: 300,
-    img: 'https://i.imgur.com/1GrakTl.jpg',
-  },
-]
+import axios from 'axios'
 
 function ClassA() {
   const { cart, setCart } = useCart()
+  const [ products, setProducts ] = useState([])
   const addToCart = (index) => {
-    const findProduct = cart.find((data,index) => {
-      return data.id === sampleData[index].id
+    const findProduct = cart.find((data2,index2) => {
+      return data2.id == products[index].id
     })
-    if(findProduct !== undefined){
+    if(findProduct === undefined){
+      setCart([...cart,{...products[index], count: 1}])
+      alert('加入購物車') 
+    }else{
       alert('此商品已在購物車中') 
-    }else{}
-    const notAdded = cart.reduce((prev, next) => {
-      console.log("123",prev)
-      console.log("next",next)
-      if(next.id === sampleData[index].id){
-        return false
-        console.log("123-1",prev)
-      }
-    },true)
-    if(notAdded) {
-      console.log("456")
-      setCart([...cart,{...sampleData[index], count: 1}])
-    }else {
-      const newProducts = cart.map((v2, i2) => {
-        return v2.id === sampleData[index].id  ? { ...v2, count: v2.count + 1 } : { ...v2 }
-      })
-      console.log("789")
-      setCart(newProducts)
     }
-    
   }
-  // useEffect
+  const fetchProducts = async () => {
+    const data = await axios.get('https://mocki.io/v1/599dc586-e116-4d78-9d9f-50fce59a97eb')
+    setProducts(data.data)
+  }
+  useEffect(() => {
+    fetchProducts()
+  },[])
   return (
     <>
       <div className='ClassA'>
-        {sampleData.map((data,index) => {
+        {products.map((data,index) => {
           return (
             <div className='card' key={data.id}>
               <div className='img'><img src={data.img} alt="" /></div>
