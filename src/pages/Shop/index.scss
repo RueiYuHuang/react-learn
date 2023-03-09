@@ -1,0 +1,22 @@
+.Shop {
+    .nav {
+        display: flex;
+        list-style: none;
+        background-color: antiquewhite;
+        .item {
+            margin: 0 10px;
+        }
+    }
+    .ClassA {
+        background-color: rgb(255, 198, 123);
+        height: 300px;
+    }
+    .ClassB {
+        background-color: rgb(255, 180, 82);
+        height: 300px;
+    }
+    .ClassC {
+        background-color: rgb(255, 145, 0);
+        height: 300px;
+    }
+}

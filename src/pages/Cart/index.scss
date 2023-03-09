@@ -1,0 +1,59 @@
+.Cart {
+  background-color: rgb(225, 225, 225);
+  .card {   
+    padding: 20px;
+    .row {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      .OrderList {
+        background-color: white;
+        border-radius: 15px 0px 0px 15px ;
+        padding: 20px;
+        .ProductItem {
+          .row {
+            display: grid;
+            grid-template-columns: 2fr 2fr 2fr 2fr 1fr;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            .img {
+              object-fit: contain;
+              width: 100px;
+              height: 100px;
+            }
+            .count {
+              width: 30px;
+              margin: 0 20px;
+              text-align: center;
+            }
+            .delete, .set_count{
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .Summary {
+        background-color: gray;
+        border-radius: 0 15px 15px 0;
+        padding: 20px;
+        .column {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          // align-items: center;
+        }
+        .btn {
+          background-color: #000;
+          border-color: #000;
+          color: white;
+          width: 100%;
+          font-size: 0.7rem;
+          margin-top: 4vh;
+          padding: 1vh;
+          border-radius: 0;
+        }
+      }
+    }
+  }
+}

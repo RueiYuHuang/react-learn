@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --primary-color: gold;
+    --secondary-color: gold;
+    --header-height: 100px;
+    --footer-height: 100px;
+    --main-height: calc(100vh - 200px);
+}
+a{
+    text-decoration: none;
+    color: initial
+}
+a:visited {
+    // color: black;
+    color: initial;
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
