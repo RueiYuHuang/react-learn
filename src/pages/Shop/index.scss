@@ -9,7 +9,38 @@
     }
     .ClassA {
         background-color: rgb(255, 198, 123);
-        height: 300px;
+        // height: 300px;
+        display: grid;
+        grid-template-columns:  repeat(4, 1fr);
+        gap: 10px;
+        padding: 20px;
+        .card {
+            background-color: white;
+            border: 2px solid white;
+            border-radius: 10px;
+            padding: 10px;
+            .img {
+                width: 100%;
+                height: 200px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
+            .title {
+                text-align: center;
+            }
+            .add-btn {
+                width: 100%;
+                height: 30px;
+                background-color: orange;
+                border: 0;
+                border-radius: 5px;
+                color: white;
+                cursor: pointer;
+            }
+        }
     }
     .ClassB {
         background-color: rgb(255, 180, 82);

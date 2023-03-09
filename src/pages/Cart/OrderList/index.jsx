@@ -1,22 +1,22 @@
 import ProductItem from './ProductItem'
 
-function OrderList({ products, setProducts }) {
+function OrderList({ cart, setCart }) {
   // 更新products
   // params:
   // id 目前要更新的資料id
   // valueObject: object  ex. { count:3 }
   const updateCount = (id, valueObject) => {
-    const newProducts = products.map((v2, i2) => {
+    const newCart = cart.map((v2, i2) => {
       return id === v2.id ? { ...v2, ...valueObject } : { ...v2 }
     })
 
-    setProducts(newProducts)
+    setCart(newCart)
   }
 
   // params: id 目前要刪除的資料id
   const deleteProduct = (id) => {
     // 刪除這個id的資料 相當於 回傳一個新的陣列不包含此id的資料
-    setProducts(products.filter((v2, i2) => id !== v2.id))
+    setCart(cart.filter((v2, i2) => id !== v2.id))
   }
 
   return (
@@ -30,11 +30,11 @@ function OrderList({ products, setProducts }) {
               </h4>
             </div>
             <div className="col align-self-center text-right text-muted">
-              {products.length} items
+              {cart.length} items
             </div>
           </div>
         </div>
-        {products.map((v, i) => {
+        {cart.map((v, i) => {
           const { id, name, price, img, count } = v
 
           return (

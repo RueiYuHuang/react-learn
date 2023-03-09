@@ -6,13 +6,13 @@ import OrderList from './OrderList'
 import Summary from './Summary'
 import { useCart } from '@/utils/useCart'
 function Cart() {
-  const { products, setProducts, calcTotalNumber, calcTotalPrice } = useCart()
+  const { cart, setCart, calcTotalNumber, calcTotalPrice } = useCart()
   return (
     <div className='Cart'>
       <DefaultLayout>
         <div className="card">
           <div className="row">
-            <OrderList products={products} setProducts={setProducts} />
+            <OrderList cart={cart} setCart={setCart} />
             <Summary
               totalNumber={calcTotalNumber()}
               totalPrice={calcTotalPrice()}

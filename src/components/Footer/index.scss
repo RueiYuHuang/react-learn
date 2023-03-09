@@ -2,4 +2,7 @@
     width: 100vw;
     height: var(--footer-height);
     background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
