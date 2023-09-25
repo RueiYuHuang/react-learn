@@ -4,15 +4,15 @@ import './index.scss'
 import DefaultLayout from '@/layouts/DefaultLayout'
 import OrderList from './OrderList'
 import Summary from './Summary'
-import { useCart } from '@/utils/useCart'
+import  useCart  from '@/hooks/useCart'
 function Cart() {
-  const { cart, setCart, calcTotalNumber, calcTotalPrice } = useCart()
+  const { carts, calcTotalNumber, calcTotalPrice } = useCart()
   return (
     <div className='Cart'>
       <DefaultLayout>
         <div className="card">
           <div className="row">
-            <OrderList cart={cart} setCart={setCart} />
+            <OrderList cart={carts} />
             <Summary
               totalNumber={calcTotalNumber()}
               totalPrice={calcTotalPrice()}

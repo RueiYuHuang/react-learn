@@ -1,13 +1,13 @@
-function ProductItem({
+import useCart from "@/hooks/useCart"
+const ProductItem = ({
+  id,
   name,
   price,
   img,
   count,
-  //setCount,
-  updateCount,
-  id,
-  deleteProduct,
-}) {
+}) => {
+  const {updateCount, deleteProduct} = useCart()
+
   return (
     <div className="ProductItem">
       <div >
@@ -23,8 +23,7 @@ function ProductItem({
             <span
               className="set_count"
               onClick={() => {
-                //setCount(count - 1)
-                if(count > 1) updateCount(id, { count: count - 1 })
+                if(count > 1) updateCount(id, -1)
               }}
             >
               -
@@ -33,8 +32,7 @@ function ProductItem({
             <span
             className="set_count"
               onClick={() => {
-                //setCount(count + 1)
-                updateCount(id, { count: count + 1 })
+                updateCount(id, 1)
               }}
             >
               +
