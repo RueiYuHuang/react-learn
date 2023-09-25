@@ -3,41 +3,38 @@ import CartReducer, {initialState, ACTIONS} from "../reducer/CartReducer";
 export const CartContext = createContext(initialState)
 
 export const CartProvider = ({ children }) => {
-  const [carts, dispatch] = useReducer(CartReducer, initialState)
+  const [cart, dispatch] = useReducer(CartReducer, initialState)
 
-  // 新增商品至購物車
+  // 新增至購物車
   const addToCart = (newProduct) => {
-    const newCarts = [...carts, {...newProduct, count: 1}]
-    dispatch({type: ACTIONS.ADD_TO_CART, payload: newCarts})
+    const findProduct = cart.find((data) => data.id == newProduct.id)
+    if(findProduct === undefined){
+      const newCart = [...cart, {...newProduct, count: 1}]
+      dispatch({type: ACTIONS.ADD_TO_CART, payload: newCart})
+      alert('加入購物車') 
+    }else{
+      alert('此商品已在購物車中') 
+    }
   }
 
   // 修改商品數量
   const updateCount = (id, count) => {
-    console.log('id:', id)
-    console.log('count:', count)
-    const newCarts = carts.map((data) => {
-      console.log(data)
-      if (data.id = id){
-        return {...data, count: data.count + count}
-      }
-      return data
-    })
-    console.log('newCarts', newCarts)
-    dispatch({type: ACTIONS.UPDATE_COUNT, payload: newCarts})
+    const newCart = cart.map((data) => data.id === id ? {...data, count: data.count + count} : {...data})
+    dispatch({type: ACTIONS.UPDATE_COUNT, payload: newCart})
   }
 
   // 刪除商品
   const deleteProduct = (id) => {
-    const newCarts = carts.filter((data) => data.id !== id)
-    dispatch({type: ACTIONS.DELETE_PRODUCT, payload: newCarts})
+    const newCart = cart.filter((data) => data.id !== id)
+    dispatch({type: ACTIONS.DELETE_PRODUCT, payload: newCart})
   }
 
   // 計算總數量(數量 累加)
   const calcTotalNumber = () => {
     let total = 0
 
-    for (let i = 0; i < carts.length; i++) {
-      total += carts[i].count
+    for (let i = 0; i < cart.length; i++) {
+      total += cart[i].count
     }
 
     return total
@@ -47,8 +44,8 @@ export const CartProvider = ({ children }) => {
   const calcTotalPrice = () => {
     let total = 0
 
-    for (let i = 0; i < carts.length; i++) {
-      total += carts[i].count * carts[i].price
+    for (let i = 0; i < cart.length; i++) {
+      total += cart[i].count * cart[i].price
     }
 
     return total
@@ -57,7 +54,7 @@ export const CartProvider = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
-        carts,
+        cart,
         addToCart,
         updateCount,
         deleteProduct,

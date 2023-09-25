@@ -6,13 +6,13 @@ import OrderList from './OrderList'
 import Summary from './Summary'
 import  useCart  from '@/hooks/useCart'
 function Cart() {
-  const { carts, calcTotalNumber, calcTotalPrice } = useCart()
+  const { cart, calcTotalNumber, calcTotalPrice } = useCart()
   return (
     <div className='Cart'>
       <DefaultLayout>
         <div className="card">
           <div className="row">
-            <OrderList cart={carts} />
+            <OrderList cart={cart} />
             <Summary
               totalNumber={calcTotalNumber()}
               totalPrice={calcTotalPrice()}
